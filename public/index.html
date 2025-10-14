@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#6366f1">
+    <title>Quiz Multiplayer - KBC Style</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Quiz Master</h1>
+        
+        <!-- Connection Status -->
+        <div id="connectionStatus" class="status-bar">
+            <span class="status-dot"></span>
+            <span id="statusText">Connecting...</span>
+        </div>
+
+        <!-- Menu Screen -->
+        <div id="menuScreen" class="screen active">
+            <div class="menu-card">
+                <h2>Welcome to Quiz Master!</h2>
+                <input type="text" id="playerNameInput" placeholder="Enter your name" maxlength="20">
+                
+                <div class="button-group">
+                    <button id="createRoomBtn" class="btn btn-primary">Create Room</button>
+                    <button id="joinRoomBtn" class="btn btn-secondary">Join Room</button>
+                </div>
+
+                <div id="joinRoomSection" class="hidden">
+                    <input type="text" id="roomIdInput" placeholder="Enter Room ID" maxlength="6">
+                    <button id="joinRoomConfirmBtn" class="btn btn-success">Join</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Waiting Screen -->
+        <div id="waitingScreen" class="screen">
+            <div class="waiting-card">
+                <h2>Room Created!</h2>
+                <p>Share this Room ID with your friend:</p>
+                <div class="room-id-display">
+                    <span id="displayRoomId"></span>
+                    <button id="copyRoomIdBtn" class="btn-icon" title="Copy Room ID">📋</button>
+                </div>
+                
+                <div id="playersWaiting">
+                    <h3>Players:</h3>
+                    <div id="playersList"></div>
+                </div>
+
+                <!-- Quiz Settings -->
+                <div id="quizSettings">
+                    <h3>Quiz Settings</h3>
+                    
+                    <div class="setting-group">
+                        <label>Category:</label>
+                        <select id="categorySelect" class="setting-select">
+                            <option value="technology">💻 Technology</option>
+                            <option value="entertainment">🎬 Entertainment</option>
+                            <option value="sports">⚽ Sports</option>
+                            <option value="science">🔬 Science</option>
+                            <option value="history">📚 History</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Number of Questions:</label>
+                        <select id="questionCountSelect" class="setting-select">
+                            <option value="5">5 Questions</option>
+                            <option value="10" selected>10 Questions</option>
+                            <option value="15">15 Questions</option>
+                            <option value="20">20 Questions</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Time per Question:</label>
+                        <select id="timeLimitSelect" class="setting-select">
+                            <option value="10">10 seconds</option>
+                            <option value="20">20 seconds</option>
+                            <option value="30" selected>30 seconds</option>
+                            <option value="60">60 seconds</option>
+                        </select>
+                    </div>
+
+                    <button id="startQuizBtn" class="btn btn-success">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <span id="questionCounter">Question 1/10</span>
+                    <span id="timer" class="timer">30s</span>
+                </div>
+                <div id="scoreBoard" class="score-board"></div>
+            </div>
+
+            <div class="quiz-content">
+                <div class="question-card">
+                    <div class="difficulty-badge" id="difficultyBadge">Easy</div>
+                    <h2 id="questionText">Question will appear here</h2>
+                </div>
+
+                <div class="options-grid" id="optionsGrid">
+                    <button class="option-btn" data-index="0">
+                        <span class="option-letter">A</span>
+                        <span class="option-text">Option 1</span>
+                    </button>
+                    <button class="option-btn" data-index="1">
+                        <span class="option-letter">B</span>
+                        <span class="option-text">Option 2</span>
+                    </button>
+                    <button class="option-btn" data-index="2">
+                        <span class="option-letter">C</span>
+                        <span class="option-text">Option 3</span>
+                    </button>
+                    <button class="option-btn" data-index="3">
+                        <span class="option-letter">D</span>
+                        <span class="option-text">Option 4</span>
+                    </button>
+                </div>
+
+                <!-- Lifelines -->
+                <div class="lifelines">
+                    <button id="fiftyFiftyBtn" class="lifeline-btn" title="50:50">
+                        <span class="lifeline-icon">50:50</span>
+                    </button>
+                    <button id="audiencePollBtn" class="lifeline-btn" title="Audience Poll">
+                        <span class="lifeline-icon">👥</span>
+                    </button>
+                    <button id="skipQuestionBtn" class="lifeline-btn" title="Skip Question">
+                        <span class="lifeline-icon">⏭️</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="results-card">
+                <div class="results-icon">🏆</div>
+                <h2 id="resultsTitle">Quiz Complete!</h2>
+                <div id="resultsContent"></div>
+                <button id="backToMenuBtn" class="btn btn-primary">Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- Audience Poll Modal -->
+        <div id="audiencePollModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Audience Poll Results</h3>
+                <div id="pollResults" class="poll-results"></div>
+                <button id="closePollBtn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

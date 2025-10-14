@@ -1,0 +1,17 @@
+{
+  "name": "quiz-multiplayer",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["quiz", "multiplayer", "kbc", "game"],
+  "author": "",
+  "license": "ISC",
+  "description": "KBC-style multiplayer quiz game",
+  "dependencies": {
+    "express": "^5.1.0",
+    "ws": "^8.18.3"
+  }
+}
