@@ -111,7 +111,13 @@ function playWithBot(ws, data) {
     
     // Start quiz immediately
     setTimeout(() => {
-        startQuiz(ws, data.settings || {});
+        startQuiz(ws, {
+            settings: data.settings || {
+                category: 'random',
+                questionCount: 10,
+                timeLimit: 30
+            }
+        });
     }, 1000);
 }
 
@@ -159,11 +165,13 @@ function startQuiz(ws, data) {
     });
     
     room.players.forEach(player => {
-        player.ws.send(JSON.stringify({
-            type: 'quiz_started',
-            settings: room.settings,
-            totalQuestions: room.questions.length
-        }));
+        if (player.ws) {
+            player.ws.send(JSON.stringify({
+                type: 'quiz_started',
+                settings: room.settings,
+                totalQuestions: room.questions.length
+            }));
+        }
     });
     
     setTimeout(() => sendQuestion(room), 1000);
@@ -341,10 +349,12 @@ function endQuiz(room) {
     })).sort((a, b) => b.score - a.score);
     
     room.players.forEach(player => {
-        player.ws.send(JSON.stringify({
-            type: 'quiz_ended',
-            results: results
-        }));
+        if (player.ws) {
+            player.ws.send(JSON.stringify({
+                type: 'quiz_ended',
+                results: results
+            }));
+        }
     });
 }
 
