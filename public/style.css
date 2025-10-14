@@ -67,12 +67,12 @@ h1 {
 
 /* Screens */
 .screen {
-    display: none;
+    display: none !important;
 }
 
 .screen.active {
-    display: block;
-    animation: fadeIn 0.3s ease-out;
+    display: block !important;
+    animation: fadeIn 0.4s ease-out;
 }
 
 @keyframes fadeIn {
@@ -81,11 +81,41 @@ h1 {
 }
 
 /* Menu & Waiting Cards */
-.menu-card, .waiting-card {
+.menu-card, .waiting-card, .loading-card {
     background: white;
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading Screen */
+.loading-card {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #f3f4f6;
+    border-top: 6px solid #667eea;
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-card h2 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.loading-card p {
+    color: #6b7280;
+    font-size: 1.2rem;
 }
 
 .menu-card h2, .waiting-card h2 {

@@ -7,6 +7,7 @@ let timerInterval = null;
 // DOM Elements
 const menuScreen = document.getElementById('menuScreen');
 const waitingScreen = document.getElementById('waitingScreen');
+const loadingScreen = document.getElementById('loadingScreen');
 const quizScreen = document.getElementById('quizScreen');
 const resultsScreen = document.getElementById('resultsScreen');
 const connectionStatus = document.getElementById('connectionStatus');
@@ -96,8 +97,14 @@ function handleServerMessage(data) {
             break;
         case 'player_joined':
             updatePlayersList(data.players);
+            // If solo mode (only 1 player), show loading screen
+            if (data.players.length === 1) {
+                menuScreen.classList.remove('active');
+                loadingScreen.classList.add('active');
+            }
             break;
         case 'quiz_started':
+            loadingScreen.classList.remove('active');
             showQuizScreen();
             break;
         case 'new_question':

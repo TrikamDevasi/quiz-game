@@ -27,6 +27,32 @@ function generateUserId() {
     return Math.random().toString(36).substring(2, 15);
 }
 
+function shuffleOptions(question) {
+    // Create array of options with their original indices
+    const optionsWithIndices = question.options.map((option, index) => ({
+        text: option,
+        originalIndex: index
+    }));
+    
+    // Shuffle the options
+    for (let i = optionsWithIndices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [optionsWithIndices[i], optionsWithIndices[j]] = [optionsWithIndices[j], optionsWithIndices[i]];
+    }
+    
+    // Find new position of correct answer
+    const newCorrectIndex = optionsWithIndices.findIndex(
+        opt => opt.originalIndex === question.correct
+    );
+    
+    return {
+        question: question.question,
+        options: optionsWithIndices.map(opt => opt.text),
+        correct: newCorrectIndex,
+        difficulty: question.difficulty
+    };
+}
+
 function getUniqueQuestions(userId, category, count) {
     // Get all questions from category or random mix
     let allQuestions = [];
@@ -63,13 +89,16 @@ function getUniqueQuestions(userId, category, count) {
     const shuffled = availableQuestions.sort(() => 0.5 - Math.random());
     const selectedQuestions = shuffled.slice(0, Math.min(count, shuffled.length));
     
+    // Shuffle options for each question
+    const questionsWithShuffledOptions = selectedQuestions.map(q => shuffleOptions(q));
+    
     // Mark selected questions as used
     selectedQuestions.forEach((q, index) => {
         const questionId = `${category}_${index}_${q.question}`;
         usedQuestions.add(questionId);
     });
     
-    return selectedQuestions;
+    return questionsWithShuffledOptions;
 }
 
 wss.on('connection', (ws) => {
