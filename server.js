@@ -16,12 +16,67 @@ const rooms = new Map();
 // Quiz questions database
 const quizQuestions = require('./questions.json');
 
+// Track used questions per user session (prevents repeats)
+const userQuestionHistory = new Map();
+
 function generateRoomId() {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
 }
 
+function generateUserId() {
+    return Math.random().toString(36).substring(2, 15);
+}
+
+function getUniqueQuestions(userId, category, count) {
+    // Get all questions from category or random mix
+    let allQuestions = [];
+    
+    if (category === 'random') {
+        // Mix questions from all categories
+        Object.values(quizQuestions).forEach(categoryQuestions => {
+            allQuestions = allQuestions.concat(categoryQuestions);
+        });
+    } else {
+        allQuestions = [...(quizQuestions[category] || [])];
+    }
+    
+    // Get user's question history
+    if (!userQuestionHistory.has(userId)) {
+        userQuestionHistory.set(userId, new Set());
+    }
+    const usedQuestions = userQuestionHistory.get(userId);
+    
+    // Filter out used questions
+    let availableQuestions = allQuestions.filter((q, index) => {
+        const questionId = `${category}_${index}_${q.question}`;
+        return !usedQuestions.has(questionId);
+    });
+    
+    // If not enough unused questions, reset history for this user
+    if (availableQuestions.length < count) {
+        console.log(`Resetting question history for user ${userId}`);
+        usedQuestions.clear();
+        availableQuestions = [...allQuestions];
+    }
+    
+    // Shuffle and select questions
+    const shuffled = availableQuestions.sort(() => 0.5 - Math.random());
+    const selectedQuestions = shuffled.slice(0, Math.min(count, shuffled.length));
+    
+    // Mark selected questions as used
+    selectedQuestions.forEach((q, index) => {
+        const questionId = `${category}_${index}_${q.question}`;
+        usedQuestions.add(questionId);
+    });
+    
+    return selectedQuestions;
+}
+
 wss.on('connection', (ws) => {
     console.log('New client connected');
+    
+    // Assign unique user ID to track question history
+    ws.userId = generateUserId();
     
     ws.on('message', (message) => {
         try {
@@ -150,9 +205,12 @@ function startQuiz(ws, data) {
     
     room.settings = data.settings;
     
-    const categoryQuestions = quizQuestions[data.settings.category] || [];
-    const shuffled = [...categoryQuestions].sort(() => 0.5 - Math.random());
-    room.questions = shuffled.slice(0, data.settings.questionCount);
+    // Get unique questions that haven't been used by this user
+    room.questions = getUniqueQuestions(
+        ws.userId,
+        data.settings.category,
+        data.settings.questionCount
+    );
     room.currentQuestion = 0;
     
     room.players.forEach(player => {
@@ -319,7 +377,26 @@ function handleDisconnect(ws) {
             }
         }
     }
+    
+    // Note: We keep user question history even after disconnect
+    // so questions don't repeat when they reconnect
+    // History is automatically cleaned up after server restart
 }
+
+// Clean up old user histories every hour (prevent memory leaks)
+setInterval(() => {
+    const maxHistorySize = 1000; // Keep max 1000 users
+    if (userQuestionHistory.size > maxHistorySize) {
+        console.log(`Cleaning up old question histories. Current size: ${userQuestionHistory.size}`);
+        const entries = Array.from(userQuestionHistory.entries());
+        // Keep only the most recent 500
+        userQuestionHistory.clear();
+        entries.slice(-500).forEach(([key, value]) => {
+            userQuestionHistory.set(key, value);
+        });
+        console.log(`Cleaned up. New size: ${userQuestionHistory.size}`);
+    }
+}, 3600000); // Every hour
 
 server.listen(PORT, () => {
     console.log(`Quiz server running on port ${PORT}`);
