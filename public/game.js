@@ -271,8 +271,14 @@ function showResults(results) {
     
     resultsContent.innerHTML = results.map((player, index) => `
         <div class="result-item ${index === 0 ? 'winner' : ''}">
-            <span class="result-name">${index === 0 ? '🏆 ' : ''}${player.name}</span>
-            <span class="result-score">${player.score} pts</span>
+            <div class="result-header">
+                <span class="result-name">${index === 0 ? '🏆 ' : ''}${player.name}</span>
+                <span class="result-score">${player.score} pts</span>
+            </div>
+            <div class="result-stats">
+                <span class="stat-correct">✅ Correct: ${player.correct || 0}</span>
+                <span class="stat-wrong">❌ Wrong: ${player.wrong || 0}</span>
+            </div>
         </div>
     `).join('');
 }

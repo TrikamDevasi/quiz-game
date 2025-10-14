@@ -568,13 +568,19 @@ input[type="text"]:focus {
     border-radius: 12px;
     margin-bottom: 15px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .result-item.winner {
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     border: 3px solid #f59e0b;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .result-name {
@@ -587,6 +593,23 @@ input[type="text"]:focus {
     font-size: 1.5rem;
     font-weight: bold;
     color: #667eea;
+}
+
+.result-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 1rem;
+    color: #6b7280;
+}
+
+.stat-correct {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.stat-wrong {
+    color: #ef4444;
+    font-weight: 600;
 }
 
 /* Modal */

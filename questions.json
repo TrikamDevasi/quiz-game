@@ -1,38 +1,474 @@
 {
+  "bollywood": [
+    {
+      "question": "Who is known as the 'King of Bollywood'?",
+      "options": ["Shah Rukh Khan", "Amitabh Bachchan", "Salman Khan", "Aamir Khan"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which movie won the first National Film Award for Best Feature Film?",
+      "options": ["Shyamchi Aai", "Do Bigha Zameen", "Mother India", "Mughal-e-Azam"],
+      "correct": 0,
+      "difficulty": "hard"
+    },
+    {
+      "question": "Who directed the movie '3 Idiots'?",
+      "options": ["Rajkumar Hirani", "Karan Johar", "Sanjay Leela Bhansali", "Rohit Shetty"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which actress is known as the 'Dream Girl'?",
+      "options": ["Hema Malini", "Madhuri Dixit", "Sridevi", "Rekha"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "In which year was the first Indian talkie film 'Alam Ara' released?",
+      "options": ["1931", "1925", "1940", "1935"],
+      "correct": 0,
+      "difficulty": "hard"
+    },
+    {
+      "question": "Who sang 'Kal Ho Naa Ho' title track?",
+      "options": ["Sonu Nigam", "Arijit Singh", "Atif Aslam", "Mohit Chauhan"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which movie features the song 'Chaiyya Chaiyya'?",
+      "options": ["Dil Se", "Dilwale Dulhania Le Jayenge", "Kuch Kuch Hota Hai", "Kabhi Khushi Kabhie Gham"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who is the director of 'Sholay'?",
+      "options": ["Ramesh Sippy", "Yash Chopra", "Raj Kapoor", "Guru Dutt"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which Bollywood actor is known as 'Bhaijaan'?",
+      "options": ["Salman Khan", "Sanjay Dutt", "Ajay Devgn", "Akshay Kumar"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who composed music for 'Kabhi Khushi Kabhie Gham'?",
+      "options": ["Jatin-Lalit", "A.R. Rahman", "Pritam", "Vishal-Shekhar"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which movie won India's first Oscar?",
+      "options": ["Slumdog Millionaire", "Lagaan", "Mother India", "Salaam Bombay"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who played the role of 'Mogambo' in Mr. India?",
+      "options": ["Amrish Puri", "Pran", "Amjad Khan", "Kulbhushan Kharbanda"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which actress made her debut with 'Om Shanti Om'?",
+      "options": ["Deepika Padukone", "Anushka Sharma", "Katrina Kaif", "Priyanka Chopra"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who is the 'Shehenshah' of Bollywood?",
+      "options": ["Amitabh Bachchan", "Dilip Kumar", "Raj Kapoor", "Dev Anand"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which movie features the dialogue 'Mere paas maa hai'?",
+      "options": ["Deewar", "Sholay", "Don", "Zanjeer"],
+      "correct": 0,
+      "difficulty": "medium"
+    }
+  ],
+  "cricket": [
+    {
+      "question": "Who is known as the 'God of Cricket'?",
+      "options": ["Sachin Tendulkar", "Virat Kohli", "MS Dhoni", "Kapil Dev"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "In which year did India win its first Cricket World Cup?",
+      "options": ["1983", "2007", "2011", "1992"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who captained India to victory in the 2011 World Cup?",
+      "options": ["MS Dhoni", "Sachin Tendulkar", "Virat Kohli", "Sourav Ganguly"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Virat Kohli's highest ODI score?",
+      "options": ["183", "200", "175", "154"],
+      "correct": 0,
+      "difficulty": "hard"
+    },
+    {
+      "question": "Who has taken the most wickets for India in Test cricket?",
+      "options": ["Anil Kumble", "Kapil Dev", "Harbhajan Singh", "Zaheer Khan"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which Indian cricketer is known as 'Captain Cool'?",
+      "options": ["MS Dhoni", "Rahul Dravid", "Sourav Ganguly", "Virat Kohli"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who scored the fastest century in ODI cricket for India?",
+      "options": ["Virender Sehwag", "Rohit Sharma", "Yuvraj Singh", "Sachin Tendulkar"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "In which year did IPL start?",
+      "options": ["2008", "2007", "2009", "2010"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who is known as the 'Wall' of Indian cricket?",
+      "options": ["Rahul Dravid", "VVS Laxman", "Sourav Ganguly", "Virender Sehwag"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which IPL team has won the most titles?",
+      "options": ["Mumbai Indians", "Chennai Super Kings", "Kolkata Knight Riders", "Royal Challengers Bangalore"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who hit 6 sixes in an over in T20 World Cup?",
+      "options": ["Yuvraj Singh", "MS Dhoni", "Virat Kohli", "Rohit Sharma"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Sachin Tendulkar's jersey number?",
+      "options": ["10", "7", "18", "99"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who was the first Indian to score a triple century in Test cricket?",
+      "options": ["Virender Sehwag", "Sachin Tendulkar", "Sunil Gavaskar", "Virat Kohli"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which Indian bowler has taken a hat-trick in World Cup?",
+      "options": ["Chetan Sharma", "Kapil Dev", "Javagal Srinath", "Zaheer Khan"],
+      "correct": 0,
+      "difficulty": "hard"
+    },
+    {
+      "question": "Who is the highest run-scorer in IPL history?",
+      "options": ["Virat Kohli", "Rohit Sharma", "Suresh Raina", "David Warner"],
+      "correct": 0,
+      "difficulty": "medium"
+    }
+  ],
+  "indian_history": [
+    {
+      "question": "Who was the first Prime Minister of India?",
+      "options": ["Jawaharlal Nehru", "Mahatma Gandhi", "Sardar Patel", "Indira Gandhi"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "In which year did India gain independence?",
+      "options": ["1947", "1950", "1942", "1945"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who is known as the 'Father of the Nation' in India?",
+      "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhas Chandra Bose", "Bhagat Singh"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who built the Taj Mahal?",
+      "options": ["Shah Jahan", "Akbar", "Aurangzeb", "Humayun"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "When was the Constitution of India adopted?",
+      "options": ["26 November 1949", "26 January 1950", "15 August 1947", "26 January 1949"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who was the first President of India?",
+      "options": ["Dr. Rajendra Prasad", "Dr. S. Radhakrishnan", "Dr. APJ Abdul Kalam", "Zakir Husain"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who started the Quit India Movement?",
+      "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhas Chandra Bose", "Sardar Patel"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "In which year did the Jallianwala Bagh massacre occur?",
+      "options": ["1919", "1920", "1921", "1918"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who was known as the 'Iron Man of India'?",
+      "options": ["Sardar Vallabhbhai Patel", "Subhas Chandra Bose", "Bhagat Singh", "Lal Bahadur Shastri"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who wrote the Indian National Anthem?",
+      "options": ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Sarojini Naidu", "Subramanya Bharathi"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Mughal emperor built the Red Fort?",
+      "options": ["Shah Jahan", "Akbar", "Aurangzeb", "Jahangir"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who was the first woman Prime Minister of India?",
+      "options": ["Indira Gandhi", "Pratibha Patil", "Sarojini Naidu", "Sonia Gandhi"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "In which year was the first battle of Panipat fought?",
+      "options": ["1526", "1556", "1761", "1600"],
+      "correct": 0,
+      "difficulty": "hard"
+    },
+    {
+      "question": "Who founded the Maurya Empire?",
+      "options": ["Chandragupta Maurya", "Ashoka", "Bindusara", "Chanakya"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who gave the slogan 'Jai Jawan Jai Kisan'?",
+      "options": ["Lal Bahadur Shastri", "Jawaharlal Nehru", "Indira Gandhi", "Mahatma Gandhi"],
+      "correct": 0,
+      "difficulty": "medium"
+    }
+  ],
+  "indian_culture": [
+    {
+      "question": "Which is the national flower of India?",
+      "options": ["Lotus", "Rose", "Jasmine", "Marigold"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the national animal of India?",
+      "options": ["Bengal Tiger", "Lion", "Elephant", "Peacock"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which festival is known as the 'Festival of Lights'?",
+      "options": ["Diwali", "Holi", "Dussehra", "Navratri"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which classical dance form originated in Kerala?",
+      "options": ["Kathakali", "Bharatanatyam", "Odissi", "Kuchipudi"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the traditional dress of Punjab?",
+      "options": ["Salwar Kameez", "Saree", "Dhoti", "Lungi"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Indian state is famous for Kathakali dance?",
+      "options": ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the festival of colors called?",
+      "options": ["Holi", "Diwali", "Dussehra", "Pongal"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which language has the most speakers in India?",
+      "options": ["Hindi", "Bengali", "Telugu", "Marathi"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the national bird of India?",
+      "options": ["Peacock", "Parrot", "Eagle", "Sparrow"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Indian festival celebrates the harvest season?",
+      "options": ["Pongal", "Diwali", "Holi", "Eid"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the traditional Indian greeting?",
+      "options": ["Namaste", "Hello", "Salaam", "Vanakkam"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which state is known as 'God's Own Country'?",
+      "options": ["Kerala", "Goa", "Himachal Pradesh", "Kashmir"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the traditional musical instrument of South India?",
+      "options": ["Veena", "Sitar", "Tabla", "Harmonium"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which festival marks the victory of good over evil?",
+      "options": ["Dussehra", "Diwali", "Holi", "Navratri"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the traditional Indian bread?",
+      "options": ["Roti", "Naan", "Paratha", "All of the above"],
+      "correct": 3,
+      "difficulty": "easy"
+    }
+  ],
+  "general_knowledge": [
+    {
+      "question": "What is the capital of India?",
+      "options": ["New Delhi", "Mumbai", "Kolkata", "Chennai"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "How many states are there in India?",
+      "options": ["28", "29", "30", "27"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which is the longest river in India?",
+      "options": ["Ganga", "Yamuna", "Brahmaputra", "Godavari"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the currency of India?",
+      "options": ["Rupee", "Dollar", "Pound", "Euro"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which is the highest mountain peak in India?",
+      "options": ["Kanchenjunga", "Nanda Devi", "K2", "Mount Everest"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which city is known as the 'Pink City'?",
+      "options": ["Jaipur", "Jodhpur", "Udaipur", "Bikaner"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the national sport of India?",
+      "options": ["Hockey", "Cricket", "Football", "Kabaddi"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which is the largest state in India by area?",
+      "options": ["Rajasthan", "Madhya Pradesh", "Maharashtra", "Uttar Pradesh"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Who is known as the 'Missile Man of India'?",
+      "options": ["Dr. APJ Abdul Kalam", "Dr. Vikram Sarabhai", "Dr. Homi Bhabha", "Dr. C.V. Raman"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Indian city is known as the 'Silicon Valley of India'?",
+      "options": ["Bangalore", "Hyderabad", "Pune", "Chennai"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the national game of India (unofficial)?",
+      "options": ["Cricket", "Hockey", "Kabaddi", "Football"],
+      "correct": 1,
+      "difficulty": "medium"
+    },
+    {
+      "question": "Which is the smallest state in India?",
+      "options": ["Goa", "Sikkim", "Tripura", "Manipur"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "In which city is the Gateway of India located?",
+      "options": ["Mumbai", "Delhi", "Kolkata", "Chennai"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Indian scientist won the Nobel Prize in Physics?",
+      "options": ["C.V. Raman", "Homi Bhabha", "Vikram Sarabhai", "APJ Abdul Kalam"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is India's national motto?",
+      "options": ["Satyameva Jayate", "Jai Hind", "Vande Mataram", "Bharat Mata Ki Jai"],
+      "correct": 0,
+      "difficulty": "medium"
+    }
+  ],
   "technology": [
+    {
+      "question": "Who is the CEO of Google?",
+      "options": ["Sundar Pichai", "Satya Nadella", "Tim Cook", "Mark Zuckerberg"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
     {
       "question": "What does HTML stand for?",
       "options": ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks Text Markup Language"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Who is known as the father of computers?",
-      "options": ["Charles Babbage", "Alan Turing", "Bill Gates", "Steve Jobs"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "What year was JavaScript created?",
-      "options": ["1995", "1990", "2000", "1985"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "What does CPU stand for?",
-      "options": ["Central Processing Unit", "Computer Personal Unit", "Central Program Utility", "Computer Processing Unit"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Which company developed Java?",
-      "options": ["Sun Microsystems", "Microsoft", "Apple", "IBM"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "What is the full form of RAM?",
-      "options": ["Random Access Memory", "Read Access Memory", "Run Access Memory", "Rapid Access Memory"],
       "correct": 0,
       "difficulty": "easy"
     },
@@ -49,264 +485,70 @@
       "difficulty": "easy"
     },
     {
+      "question": "Which company developed Java?",
+      "options": ["Sun Microsystems", "Microsoft", "Apple", "IBM"],
+      "correct": 0,
+      "difficulty": "medium"
+    },
+    {
+      "question": "What is the full form of RAM?",
+      "options": ["Random Access Memory", "Read Access Memory", "Run Access Memory", "Rapid Access Memory"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "Who is the CEO of Microsoft?",
+      "options": ["Satya Nadella", "Sundar Pichai", "Tim Cook", "Jeff Bezos"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does CPU stand for?",
+      "options": ["Central Processing Unit", "Computer Personal Unit", "Central Program Utility", "Computer Processing Unit"],
+      "correct": 0,
+      "difficulty": "easy"
+    },
+    {
       "question": "Which programming language is known as the 'mother of all languages'?",
-      "options": ["C", "Python", "Java", "Assembly"],
-      "correct": 0,
-      "difficulty": "hard"
-    },
-    {
-      "question": "What is the binary equivalent of decimal 10?",
-      "options": ["1010", "1100", "1001", "1111"],
-      "correct": 0,
-      "difficulty": "medium"
-    }
-  ],
-  "entertainment": [
-    {
-      "question": "Who directed the movie 'Titanic'?",
-      "options": ["James Cameron", "Steven Spielberg", "Christopher Nolan", "Martin Scorsese"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Which movie won the Oscar for Best Picture in 2020?",
-      "options": ["Parasite", "1917", "Joker", "Once Upon a Time in Hollywood"],
+      "options": ["C", "Java", "Python", "Assembly"],
       "correct": 0,
       "difficulty": "medium"
     },
     {
-      "question": "Who played Iron Man in the Marvel movies?",
-      "options": ["Robert Downey Jr.", "Chris Evans", "Chris Hemsworth", "Mark Ruffalo"],
+      "question": "What does URL stand for?",
+      "options": ["Uniform Resource Locator", "Universal Resource Locator", "Uniform Retrieval Locator", "Universal Retrieval Locator"],
       "correct": 0,
       "difficulty": "easy"
     },
     {
-      "question": "What is the highest-grossing film of all time?",
-      "options": ["Avatar", "Avengers: Endgame", "Titanic", "Star Wars"],
+      "question": "Who invented the World Wide Web?",
+      "options": ["Tim Berners-Lee", "Bill Gates", "Steve Jobs", "Mark Zuckerberg"],
       "correct": 0,
       "difficulty": "medium"
     },
     {
-      "question": "Who sang 'Shape of You'?",
-      "options": ["Ed Sheeran", "Justin Bieber", "Bruno Mars", "Shawn Mendes"],
+      "question": "What is the brain of a computer called?",
+      "options": ["CPU", "RAM", "Hard Disk", "Motherboard"],
       "correct": 0,
       "difficulty": "easy"
     },
     {
-      "question": "Which TV series features the character Walter White?",
-      "options": ["Breaking Bad", "The Wire", "Narcos", "Ozark"],
+      "question": "Which company owns YouTube?",
+      "options": ["Google", "Facebook", "Microsoft", "Amazon"],
       "correct": 0,
       "difficulty": "easy"
     },
     {
-      "question": "Who is known as the 'King of Pop'?",
-      "options": ["Michael Jackson", "Elvis Presley", "Prince", "Madonna"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Which movie features the quote 'May the Force be with you'?",
-      "options": ["Star Wars", "Star Trek", "Guardians of the Galaxy", "Interstellar"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Who directed 'The Dark Knight' trilogy?",
-      "options": ["Christopher Nolan", "Zack Snyder", "Tim Burton", "Sam Raimi"],
+      "question": "What does VPN stand for?",
+      "options": ["Virtual Private Network", "Virtual Public Network", "Visual Private Network", "Virtual Protected Network"],
       "correct": 0,
       "difficulty": "medium"
     },
     {
-      "question": "What year was Netflix founded?",
-      "options": ["1997", "2000", "1995", "2005"],
-      "correct": 0,
-      "difficulty": "hard"
-    }
-  ],
-  "sports": [
-    {
-      "question": "How many players are there in a cricket team?",
-      "options": ["11", "10", "12", "9"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Who has won the most FIFA World Cups?",
-      "options": ["Brazil", "Germany", "Argentina", "Italy"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "In which sport is the term 'love' used?",
-      "options": ["Tennis", "Cricket", "Football", "Basketball"],
+      "question": "Which is the most popular programming language in 2024?",
+      "options": ["Python", "Java", "JavaScript", "C++"],
       "correct": 0,
       "difficulty": "medium"
-    },
-    {
-      "question": "Who is known as the 'God of Cricket'?",
-      "options": ["Sachin Tendulkar", "Virat Kohli", "MS Dhoni", "Ricky Ponting"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "How many Grand Slam tournaments are there in tennis?",
-      "options": ["4", "3", "5", "6"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Which country hosted the 2016 Olympics?",
-      "options": ["Brazil", "China", "UK", "Russia"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "Who holds the record for most goals in football?",
-      "options": ["Cristiano Ronaldo", "Lionel Messi", "Pele", "Diego Maradona"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "What is the national sport of Japan?",
-      "options": ["Sumo Wrestling", "Judo", "Karate", "Baseball"],
-      "correct": 0,
-      "difficulty": "hard"
-    },
-    {
-      "question": "How many rings are on the Olympic flag?",
-      "options": ["5", "4", "6", "7"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Who won the first IPL tournament?",
-      "options": ["Rajasthan Royals", "Mumbai Indians", "Chennai Super Kings", "Kolkata Knight Riders"],
-      "correct": 0,
-      "difficulty": "medium"
-    }
-  ],
-  "science": [
-    {
-      "question": "What is the chemical symbol for water?",
-      "options": ["H2O", "CO2", "O2", "H2"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "What planet is known as the Red Planet?",
-      "options": ["Mars", "Venus", "Jupiter", "Saturn"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "What is the speed of light?",
-      "options": ["299,792 km/s", "150,000 km/s", "500,000 km/s", "200,000 km/s"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "Who developed the theory of relativity?",
-      "options": ["Albert Einstein", "Isaac Newton", "Stephen Hawking", "Galileo Galilei"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "What is the powerhouse of the cell?",
-      "options": ["Mitochondria", "Nucleus", "Ribosome", "Chloroplast"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "What is the atomic number of Carbon?",
-      "options": ["6", "12", "8", "14"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "What is the largest organ in the human body?",
-      "options": ["Skin", "Liver", "Heart", "Brain"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "What is the boiling point of water in Celsius?",
-      "options": ["100°C", "90°C", "110°C", "120°C"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "How many bones are in the human body?",
-      "options": ["206", "208", "204", "210"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "What is the chemical formula for table salt?",
-      "options": ["NaCl", "KCl", "CaCl2", "MgCl2"],
-      "correct": 0,
-      "difficulty": "medium"
-    }
-  ],
-  "history": [
-    {
-      "question": "Who was the first President of the United States?",
-      "options": ["George Washington", "Abraham Lincoln", "Thomas Jefferson", "John Adams"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "In which year did World War II end?",
-      "options": ["1945", "1944", "1946", "1943"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Who built the Taj Mahal?",
-      "options": ["Shah Jahan", "Akbar", "Aurangzeb", "Humayun"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "When did India gain independence?",
-      "options": ["1947", "1945", "1950", "1942"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Who discovered America?",
-      "options": ["Christopher Columbus", "Vasco da Gama", "Ferdinand Magellan", "Marco Polo"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "What year did the Berlin Wall fall?",
-      "options": ["1989", "1990", "1988", "1991"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "Who was known as the Iron Lady?",
-      "options": ["Margaret Thatcher", "Indira Gandhi", "Angela Merkel", "Queen Elizabeth"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "Which empire built the Colosseum?",
-      "options": ["Roman Empire", "Greek Empire", "Persian Empire", "Ottoman Empire"],
-      "correct": 0,
-      "difficulty": "easy"
-    },
-    {
-      "question": "Who wrote the Declaration of Independence?",
-      "options": ["Thomas Jefferson", "Benjamin Franklin", "John Adams", "George Washington"],
-      "correct": 0,
-      "difficulty": "medium"
-    },
-    {
-      "question": "What year did the French Revolution begin?",
-      "options": ["1789", "1776", "1800", "1795"],
-      "correct": 0,
-      "difficulty": "hard"
     }
   ]
 }

@@ -65,7 +65,7 @@ function createRoom(ws, data) {
     const room = {
         id: roomId,
         host: ws,
-        players: [{ ws, name: data.playerName, score: 0, answered: false }],
+        players: [{ ws, name: data.playerName, score: 0, answered: false, correct: 0, wrong: 0 }],
         settings: null,
         currentQuestion: 0,
         questions: [],
@@ -89,7 +89,7 @@ function playSolo(ws, data) {
         id: roomId,
         host: ws,
         players: [
-            { ws, name: data.playerName, score: 0, answered: false }
+            { ws, name: data.playerName, score: 0, answered: false, correct: 0, wrong: 0 }
         ],
         settings: data.settings || {
             category: 'random',
@@ -133,7 +133,7 @@ function joinRoom(ws, data) {
         return;
     }
     
-    room.players.push({ ws, name: data.playerName, score: 0, answered: false });
+    room.players.push({ ws, name: data.playerName, score: 0, answered: false, correct: 0, wrong: 0 });
     ws.roomId = data.roomId;
     
     room.players.forEach(player => {
@@ -213,12 +213,15 @@ function submitAnswer(ws, data) {
     const isCorrect = data.answer === question.correct;
     
     if (isCorrect) {
+        player.correct++;
         const timeTaken = (Date.now() - room.startTime) / 1000;
         const timeBonus = Math.max(0, Math.floor((room.settings.timeLimit - timeTaken) / 2));
         
         const basePoints = { easy: 10, medium: 20, hard: 30 }[question.difficulty] || 10;
         const points = basePoints + timeBonus;
         player.score += points;
+    } else {
+        player.wrong++;
     }
     
     ws.send(JSON.stringify({
@@ -291,7 +294,9 @@ function useLifeline(ws, data) {
 function endQuiz(room) {
     const results = room.players.map(p => ({
         name: p.name,
-        score: p.score
+        score: p.score,
+        correct: p.correct,
+        wrong: p.wrong
     })).sort((a, b) => b.score - a.score);
     
     room.players.forEach(player => {
