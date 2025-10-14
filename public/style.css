@@ -148,14 +148,25 @@ input[type="text"]:focus {
     color: white;
 }
 
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
 .hidden {
     display: none !important;
 }
 
-#joinRoomSection {
+#joinRoomSection, #botDifficultySection {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 2px solid #e5e7eb;
+}
+
+#botDifficultySection h3 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 15px;
 }
 
 /* Room ID Display */

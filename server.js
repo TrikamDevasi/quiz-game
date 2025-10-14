@@ -42,6 +42,9 @@ function handleMessage(ws, data) {
         case 'create_room':
             createRoom(ws, data);
             break;
+        case 'play_with_bot':
+            playWithBot(ws, data);
+            break;
         case 'join_room':
             joinRoom(ws, data);
             break;
@@ -67,7 +70,8 @@ function createRoom(ws, data) {
         currentQuestion: 0,
         questions: [],
         startTime: null,
-        lifelines: {}
+        lifelines: {},
+        botDifficulty: null
     };
     
     rooms.set(roomId, room);
@@ -77,6 +81,38 @@ function createRoom(ws, data) {
         type: 'room_created',
         roomId: roomId
     }));
+}
+
+function playWithBot(ws, data) {
+    const roomId = generateRoomId();
+    const room = {
+        id: roomId,
+        host: ws,
+        players: [
+            { ws, name: data.playerName, score: 0, answered: false },
+            { ws: null, name: '🤖 Bot', score: 0, answered: false, isBot: true }
+        ],
+        settings: data.settings || {},
+        currentQuestion: 0,
+        questions: [],
+        startTime: null,
+        lifelines: {},
+        botDifficulty: data.botDifficulty || 'medium'
+    };
+    
+    rooms.set(roomId, room);
+    ws.roomId = roomId;
+    
+    // Auto-start quiz with bot
+    ws.send(JSON.stringify({
+        type: 'player_joined',
+        players: room.players.map(p => ({ name: p.name }))
+    }));
+    
+    // Start quiz immediately
+    setTimeout(() => {
+        startQuiz(ws, data.settings || {});
+    }, 1000);
 }
 
 function joinRoom(ws, data) {
@@ -144,16 +180,71 @@ function sendQuestion(room) {
     
     room.players.forEach(player => {
         player.answered = false;
-        player.ws.send(JSON.stringify({
-            type: 'new_question',
-            questionNumber: room.currentQuestion + 1,
-            totalQuestions: room.questions.length,
-            question: question.question,
-            options: question.options,
-            difficulty: question.difficulty,
-            lifelines: player.lifelines
-        }));
+        if (player.ws) {
+            player.ws.send(JSON.stringify({
+                type: 'new_question',
+                questionNumber: room.currentQuestion + 1,
+                totalQuestions: room.questions.length,
+                question: question.question,
+                options: question.options,
+                difficulty: question.difficulty,
+                lifelines: player.lifelines
+            }));
+        }
     });
+    
+    // Bot auto-answer with delay
+    if (room.botDifficulty) {
+        const botPlayer = room.players.find(p => p.isBot);
+        if (botPlayer) {
+            const delay = Math.random() * 2000 + 1000; // 1-3 seconds
+            setTimeout(() => {
+                botAnswer(room, botPlayer, question);
+            }, delay);
+        }
+    }
+}
+
+function botAnswer(room, botPlayer, question) {
+    if (botPlayer.answered) return;
+    
+    botPlayer.answered = true;
+    let isCorrect = false;
+    
+    // Bot difficulty logic
+    const difficulty = room.botDifficulty;
+    const randomChance = Math.random();
+    
+    if (difficulty === 'easy') {
+        isCorrect = randomChance < 0.4; // 40% correct
+    } else if (difficulty === 'medium') {
+        isCorrect = randomChance < 0.65; // 65% correct
+    } else { // hard
+        isCorrect = randomChance < 0.85; // 85% correct
+    }
+    
+    if (isCorrect) {
+        const basePoints = { easy: 10, medium: 20, hard: 30 }[question.difficulty] || 10;
+        const timeBonus = Math.floor(Math.random() * 5); // Random time bonus
+        botPlayer.score += basePoints + timeBonus;
+    }
+    
+    // Notify human player about bot's answer
+    const humanPlayer = room.players.find(p => !p.isBot);
+    if (humanPlayer && humanPlayer.ws) {
+        humanPlayer.ws.send(JSON.stringify({
+            type: 'bot_answered',
+            botScore: botPlayer.score
+        }));
+    }
+    
+    // Check if all answered
+    if (room.players.every(p => p.answered)) {
+        setTimeout(() => {
+            room.currentQuestion++;
+            sendQuestion(room);
+        }, 3000);
+    }
 }
 
 function submitAnswer(ws, data) {

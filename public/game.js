@@ -13,6 +13,8 @@ const connectionStatus = document.getElementById('connectionStatus');
 const statusText = document.getElementById('statusText');
 
 const playerNameInput = document.getElementById('playerNameInput');
+const playWithBotBtn = document.getElementById('playWithBotBtn');
+const botDifficultySection = document.getElementById('botDifficultySection');
 const createRoomBtn = document.getElementById('createRoomBtn');
 const joinRoomBtn = document.getElementById('joinRoomBtn');
 const joinRoomSection = document.getElementById('joinRoomSection');
@@ -106,6 +108,9 @@ function handleServerMessage(data) {
         case 'quiz_ended':
             showResults(data.results);
             break;
+        case 'bot_answered':
+            updateBotScore(data.botScore);
+            break;
         case 'error':
             alert(data.message);
             break;
@@ -113,6 +118,36 @@ function handleServerMessage(data) {
 }
 
 // Event Listeners
+playWithBotBtn.addEventListener('click', () => {
+    const playerName = playerNameInput.value.trim();
+    if (!playerName) {
+        alert('Please enter your name');
+        return;
+    }
+    botDifficultySection.classList.toggle('hidden');
+});
+
+document.querySelectorAll('.bot-difficulty').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const difficulty = btn.dataset.difficulty;
+        const playerName = playerNameInput.value.trim();
+        
+        ws.send(JSON.stringify({
+            type: 'play_with_bot',
+            playerName: playerName,
+            botDifficulty: difficulty,
+            settings: {
+                category: 'random',
+                questionCount: 10,
+                timeLimit: 30
+            }
+        }));
+        
+        menuScreen.classList.remove('active');
+        quizScreen.classList.add('active');
+    });
+});
+
 createRoomBtn.addEventListener('click', () => {
     const playerName = playerNameInput.value.trim();
     if (!playerName) {
@@ -345,6 +380,15 @@ function showAudiencePoll(poll) {
     `).join('');
     
     audiencePollModal.classList.remove('hidden');
+}
+
+function updateBotScore(botScore) {
+    // Update the score display to show bot's score
+    const scoreBoardHTML = scoreBoard.innerHTML;
+    if (scoreBoardHTML.includes('Bot')) {
+        // Update existing bot score
+        scoreBoard.innerHTML = scoreBoardHTML.replace(/Bot: \d+/, `Bot: ${botScore}`);
+    }
 }
 
 // Initialize
