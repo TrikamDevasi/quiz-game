@@ -13,8 +13,12 @@ const connectionStatus = document.getElementById('connectionStatus');
 const statusText = document.getElementById('statusText');
 
 const playerNameInput = document.getElementById('playerNameInput');
-const playWithBotBtn = document.getElementById('playWithBotBtn');
-const botDifficultySection = document.getElementById('botDifficultySection');
+const playSoloBtn = document.getElementById('playSoloBtn');
+const soloSettingsSection = document.getElementById('soloSettingsSection');
+const startSoloBtn = document.getElementById('startSoloBtn');
+const soloCategorySelect = document.getElementById('soloCategorySelect');
+const soloQuestionCountSelect = document.getElementById('soloQuestionCountSelect');
+const soloTimeLimitSelect = document.getElementById('soloTimeLimitSelect');
 const createRoomBtn = document.getElementById('createRoomBtn');
 const joinRoomBtn = document.getElementById('joinRoomBtn');
 const joinRoomSection = document.getElementById('joinRoomSection');
@@ -108,9 +112,6 @@ function handleServerMessage(data) {
         case 'quiz_ended':
             showResults(data.results);
             break;
-        case 'bot_answered':
-            updateBotScore(data.botScore);
-            break;
         case 'error':
             alert(data.message);
             break;
@@ -118,34 +119,30 @@ function handleServerMessage(data) {
 }
 
 // Event Listeners
-playWithBotBtn.addEventListener('click', () => {
+playSoloBtn.addEventListener('click', () => {
     const playerName = playerNameInput.value.trim();
     if (!playerName) {
         alert('Please enter your name');
         return;
     }
-    botDifficultySection.classList.toggle('hidden');
+    soloSettingsSection.classList.toggle('hidden');
 });
 
-document.querySelectorAll('.bot-difficulty').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const difficulty = btn.dataset.difficulty;
-        const playerName = playerNameInput.value.trim();
-        
-        ws.send(JSON.stringify({
-            type: 'play_with_bot',
-            playerName: playerName,
-            botDifficulty: difficulty,
-            settings: {
-                category: 'random',
-                questionCount: 10,
-                timeLimit: 30
-            }
-        }));
-        
-        menuScreen.classList.remove('active');
-        quizScreen.classList.add('active');
-    });
+startSoloBtn.addEventListener('click', () => {
+    const playerName = playerNameInput.value.trim();
+    const category = soloCategorySelect.value;
+    const questionCount = parseInt(soloQuestionCountSelect.value);
+    const timeLimit = parseInt(soloTimeLimitSelect.value);
+    
+    ws.send(JSON.stringify({
+        type: 'play_solo',
+        playerName: playerName,
+        settings: {
+            category: category,
+            questionCount: questionCount,
+            timeLimit: timeLimit
+        }
+    }));
 });
 
 createRoomBtn.addEventListener('click', () => {
@@ -380,15 +377,6 @@ function showAudiencePoll(poll) {
     `).join('');
     
     audiencePollModal.classList.remove('hidden');
-}
-
-function updateBotScore(botScore) {
-    // Update the score display to show bot's score
-    const scoreBoardHTML = scoreBoard.innerHTML;
-    if (scoreBoardHTML.includes('Bot')) {
-        // Update existing bot score
-        scoreBoard.innerHTML = scoreBoardHTML.replace(/Bot: \d+/, `Bot: ${botScore}`);
-    }
 }
 
 // Initialize

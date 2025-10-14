@@ -42,8 +42,8 @@ function handleMessage(ws, data) {
         case 'create_room':
             createRoom(ws, data);
             break;
-        case 'play_with_bot':
-            playWithBot(ws, data);
+        case 'play_solo':
+            playSolo(ws, data);
             break;
         case 'join_room':
             joinRoom(ws, data);
@@ -83,27 +83,30 @@ function createRoom(ws, data) {
     }));
 }
 
-function playWithBot(ws, data) {
+function playSolo(ws, data) {
     const roomId = generateRoomId();
     const room = {
         id: roomId,
         host: ws,
         players: [
-            { ws, name: data.playerName, score: 0, answered: false },
-            { ws: null, name: '🤖 Bot', score: 0, answered: false, isBot: true }
+            { ws, name: data.playerName, score: 0, answered: false }
         ],
-        settings: data.settings || {},
+        settings: data.settings || {
+            category: 'random',
+            questionCount: 10,
+            timeLimit: 30
+        },
         currentQuestion: 0,
         questions: [],
         startTime: null,
         lifelines: {},
-        botDifficulty: data.botDifficulty || 'medium'
+        isSolo: true
     };
     
     rooms.set(roomId, room);
     ws.roomId = roomId;
     
-    // Auto-start quiz with bot
+    // Auto-start quiz in solo mode
     ws.send(JSON.stringify({
         type: 'player_joined',
         players: room.players.map(p => ({ name: p.name }))
@@ -112,13 +115,9 @@ function playWithBot(ws, data) {
     // Start quiz immediately
     setTimeout(() => {
         startQuiz(ws, {
-            settings: data.settings || {
-                category: 'random',
-                questionCount: 10,
-                timeLimit: 30
-            }
+            settings: room.settings
         });
-    }, 1000);
+    }, 500);
 }
 
 function joinRoom(ws, data) {
@@ -200,59 +199,6 @@ function sendQuestion(room) {
             }));
         }
     });
-    
-    // Bot auto-answer with delay
-    if (room.botDifficulty) {
-        const botPlayer = room.players.find(p => p.isBot);
-        if (botPlayer) {
-            const delay = Math.random() * 2000 + 1000; // 1-3 seconds
-            setTimeout(() => {
-                botAnswer(room, botPlayer, question);
-            }, delay);
-        }
-    }
-}
-
-function botAnswer(room, botPlayer, question) {
-    if (botPlayer.answered) return;
-    
-    botPlayer.answered = true;
-    let isCorrect = false;
-    
-    // Bot difficulty logic
-    const difficulty = room.botDifficulty;
-    const randomChance = Math.random();
-    
-    if (difficulty === 'easy') {
-        isCorrect = randomChance < 0.4; // 40% correct
-    } else if (difficulty === 'medium') {
-        isCorrect = randomChance < 0.65; // 65% correct
-    } else { // hard
-        isCorrect = randomChance < 0.85; // 85% correct
-    }
-    
-    if (isCorrect) {
-        const basePoints = { easy: 10, medium: 20, hard: 30 }[question.difficulty] || 10;
-        const timeBonus = Math.floor(Math.random() * 5); // Random time bonus
-        botPlayer.score += basePoints + timeBonus;
-    }
-    
-    // Notify human player about bot's answer
-    const humanPlayer = room.players.find(p => !p.isBot);
-    if (humanPlayer && humanPlayer.ws) {
-        humanPlayer.ws.send(JSON.stringify({
-            type: 'bot_answered',
-            botScore: botPlayer.score
-        }));
-    }
-    
-    // Check if all answered
-    if (room.players.every(p => p.answered)) {
-        setTimeout(() => {
-            room.currentQuestion++;
-            sendQuestion(room);
-        }, 3000);
-    }
 }
 
 function submitAnswer(ws, data) {

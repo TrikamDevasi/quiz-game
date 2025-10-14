@@ -26,7 +26,7 @@
                 <input type="text" id="playerNameInput" placeholder="Enter your name" maxlength="20">
                 
                 <div class="button-group">
-                    <button id="playWithBotBtn" class="btn btn-primary">🤖 Play with Bot</button>
+                    <button id="playSoloBtn" class="btn btn-primary">🎯 Play Solo</button>
                     <button id="createRoomBtn" class="btn btn-secondary">Create Room</button>
                 </div>
                 
@@ -34,13 +34,42 @@
                     <button id="joinRoomBtn" class="btn btn-secondary">Join Room</button>
                 </div>
 
-                <div id="botDifficultySection" class="hidden">
-                    <h3>Select Bot Difficulty:</h3>
-                    <div class="button-group">
-                        <button class="btn btn-success bot-difficulty" data-difficulty="easy">Easy</button>
-                        <button class="btn btn-primary bot-difficulty" data-difficulty="medium">Medium</button>
-                        <button class="btn btn-danger bot-difficulty" data-difficulty="hard">Hard</button>
+                <div id="soloSettingsSection" class="hidden">
+                    <h3>Solo Mode Settings:</h3>
+                    
+                    <div class="setting-group">
+                        <label>Category:</label>
+                        <select id="soloCategorySelect" class="setting-select">
+                            <option value="random">Random Mix</option>
+                            <option value="technology">Technology</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="sports">Sports</option>
+                            <option value="science">Science</option>
+                            <option value="history">History</option>
+                        </select>
                     </div>
+
+                    <div class="setting-group">
+                        <label>Number of Questions:</label>
+                        <select id="soloQuestionCountSelect" class="setting-select">
+                            <option value="5">5 Questions</option>
+                            <option value="10" selected>10 Questions</option>
+                            <option value="15">15 Questions</option>
+                            <option value="20">20 Questions</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Time per Question:</label>
+                        <select id="soloTimeLimitSelect" class="setting-select">
+                            <option value="15">15 seconds</option>
+                            <option value="30" selected>30 seconds</option>
+                            <option value="45">45 seconds</option>
+                            <option value="60">60 seconds</option>
+                        </select>
+                    </div>
+
+                    <button id="startSoloBtn" class="btn btn-success">Start Quiz</button>
                 </div>
 
                 <div id="joinRoomSection" class="hidden">

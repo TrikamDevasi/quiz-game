@@ -157,16 +157,36 @@ input[type="text"]:focus {
     display: none !important;
 }
 
-#joinRoomSection, #botDifficultySection {
+#joinRoomSection, #soloSettingsSection {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 2px solid #e5e7eb;
 }
 
-#botDifficultySection h3 {
+#soloSettingsSection h3 {
     text-align: center;
     color: #667eea;
+    margin-bottom: 20px;
+}
+
+.setting-group {
     margin-bottom: 15px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-weight: 600;
+}
+
+.setting-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 10px;
 }
 
 /* Room ID Display */
