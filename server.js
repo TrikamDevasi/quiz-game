@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
+const quizAPI = require('./quiz-api');
 
 const app = express();
 const server = http.createServer(app);
@@ -13,9 +14,6 @@ const PORT = process.env.PORT || 3000;
 // Store active rooms
 const rooms = new Map();
 
-// Quiz questions database
-const quizQuestions = require('./questions.json');
-
 // Track used questions per user session (prevents repeats)
 const userQuestionHistory = new Map();
 
@@ -27,78 +25,62 @@ function generateUserId() {
     return Math.random().toString(36).substring(2, 15);
 }
 
-function shuffleOptions(question) {
-    // Create array of options with their original indices
-    const optionsWithIndices = question.options.map((option, index) => ({
-        text: option,
-        originalIndex: index
-    }));
-    
-    // Shuffle the options
-    for (let i = optionsWithIndices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [optionsWithIndices[i], optionsWithIndices[j]] = [optionsWithIndices[j], optionsWithIndices[i]];
+async function getUniqueQuestions(userId, category, count) {
+    try {
+        // Get questions from external API
+        let questions;
+
+        if (category === 'random') {
+            questions = await quizAPI.fetchRandomQuestions(count);
+        } else {
+            questions = await quizAPI.fetchQuestionsByCategory(category, count);
+        }
+
+        if (!questions || questions.length === 0) {
+            throw new Error('No questions received from API');
+        }
+
+        // Apply additional shuffling to ensure variety
+        questions = questions.sort(() => 0.5 - Math.random());
+
+        // Ensure we don't exceed the requested count
+        questions = questions.slice(0, count);
+
+        return questions;
+    } catch (error) {
+        console.error(`Error fetching questions for user ${userId}:`, error.message);
+
+        // Fallback to local questions if API fails
+        console.log('Falling back to local questions...');
+        return getFallbackQuestions(category, count);
     }
-    
-    // Find new position of correct answer
-    const newCorrectIndex = optionsWithIndices.findIndex(
-        opt => opt.originalIndex === question.correct
-    );
-    
-    return {
-        question: question.question,
-        options: optionsWithIndices.map(opt => opt.text),
-        correct: newCorrectIndex,
-        difficulty: question.difficulty
-    };
 }
 
-function getUniqueQuestions(userId, category, count) {
-    // Get all questions from category or random mix
-    let allQuestions = [];
-    
-    if (category === 'random') {
-        // Mix questions from all categories
-        Object.values(quizQuestions).forEach(categoryQuestions => {
-            allQuestions = allQuestions.concat(categoryQuestions);
-        });
-    } else {
-        allQuestions = [...(quizQuestions[category] || [])];
-    }
-    
-    // Get user's question history
-    if (!userQuestionHistory.has(userId)) {
-        userQuestionHistory.set(userId, new Set());
-    }
-    const usedQuestions = userQuestionHistory.get(userId);
-    
-    // Filter out used questions
-    let availableQuestions = allQuestions.filter((q, index) => {
-        const questionId = `${category}_${index}_${q.question}`;
-        return !usedQuestions.has(questionId);
-    });
-    
-    // If not enough unused questions, reset history for this user
-    if (availableQuestions.length < count) {
-        console.log(`Resetting question history for user ${userId}`);
-        usedQuestions.clear();
-        availableQuestions = [...allQuestions];
-    }
-    
-    // Shuffle and select questions
-    const shuffled = availableQuestions.sort(() => 0.5 - Math.random());
-    const selectedQuestions = shuffled.slice(0, Math.min(count, shuffled.length));
-    
-    // Shuffle options for each question
-    const questionsWithShuffledOptions = selectedQuestions.map(q => shuffleOptions(q));
-    
-    // Mark selected questions as used
-    selectedQuestions.forEach((q, index) => {
-        const questionId = `${category}_${index}_${q.question}`;
-        usedQuestions.add(questionId);
-    });
-    
-    return questionsWithShuffledOptions;
+function getFallbackQuestions(category, count) {
+    // This is a simplified fallback - in a real implementation,
+    // you might want to keep a backup of local questions
+    const fallbackQuestions = [
+        {
+            question: "What is the capital of India?",
+            options: ["New Delhi", "Mumbai", "Kolkata", "Chennai"],
+            correct: 0,
+            difficulty: "easy"
+        },
+        {
+            question: "Who is known as the Father of the Nation?",
+            options: ["Mahatma Gandhi", "Jawaharlal Nehru", "Sardar Patel", "Subhas Chandra Bose"],
+            correct: 0,
+            difficulty: "easy"
+        },
+        {
+            question: "Which planet is known as the Red Planet?",
+            options: ["Mars", "Venus", "Jupiter", "Saturn"],
+            correct: 0,
+            difficulty: "easy"
+        }
+    ];
+
+    return fallbackQuestions.slice(0, Math.min(count, fallbackQuestions.length));
 }
 
 wss.on('connection', (ws) => {
@@ -231,36 +213,44 @@ function joinRoom(ws, data) {
 function startQuiz(ws, data) {
     const room = rooms.get(ws.roomId);
     if (!room || room.host !== ws) return;
-    
+
     room.settings = data.settings;
-    
+
     // Get unique questions that haven't been used by this user
-    room.questions = getUniqueQuestions(
+    getUniqueQuestions(
         ws.userId,
         data.settings.category,
         data.settings.questionCount
-    );
-    room.currentQuestion = 0;
-    
-    room.players.forEach(player => {
-        player.lifelines = {
-            fiftyFifty: true,
-            audiencePoll: true,
-            skipQuestion: true
-        };
+    ).then(questions => {
+        room.questions = questions;
+        room.currentQuestion = 0;
+
+        room.players.forEach(player => {
+            player.lifelines = {
+                fiftyFifty: true,
+                audiencePoll: true,
+                skipQuestion: true
+            };
+        });
+
+        room.players.forEach(player => {
+            if (player.ws) {
+                player.ws.send(JSON.stringify({
+                    type: 'quiz_started',
+                    settings: room.settings,
+                    totalQuestions: room.questions.length
+                }));
+            }
+        });
+
+        setTimeout(() => sendQuestion(room), 1000);
+    }).catch(error => {
+        console.error('Failed to start quiz:', error);
+        ws.send(JSON.stringify({
+            type: 'error',
+            message: 'Failed to load questions. Please try again.'
+        }));
     });
-    
-    room.players.forEach(player => {
-        if (player.ws) {
-            player.ws.send(JSON.stringify({
-                type: 'quiz_started',
-                settings: room.settings,
-                totalQuestions: room.questions.length
-            }));
-        }
-    });
-    
-    setTimeout(() => sendQuestion(room), 1000);
 }
 
 function sendQuestion(room) {

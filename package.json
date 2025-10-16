@@ -6,11 +6,17 @@
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": ["quiz", "multiplayer", "kbc", "game"],
+  "keywords": [
+    "quiz",
+    "multiplayer",
+    "kbc",
+    "game"
+  ],
   "author": "",
   "license": "ISC",
   "description": "KBC-style multiplayer quiz game",
   "dependencies": {
+    "axios": "^1.12.2",
     "express": "^5.1.0",
     "ws": "^8.18.3"
   }
