@@ -42,6 +42,10 @@ class GameClient {
         };
     }
 
+    /**
+     * Send message to server
+     * @param {Object} data - Payload
+     */
     send(data) {
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             this.ws.send(JSON.stringify(data));
