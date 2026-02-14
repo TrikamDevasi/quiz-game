@@ -149,6 +149,7 @@ class GameEngine {
         }
     }
 
+    /** Send next question to players */
     sendQuestion(room) {
         if (room.currentQuestion >= room.questions.length) {
             this.endQuiz(room);
