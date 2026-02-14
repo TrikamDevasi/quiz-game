@@ -1,5 +1,6 @@
 {
   "name": "quiz-multiplayer",
+  "homepage": "https://github.com/TrikamDevasi/quiz-game",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
