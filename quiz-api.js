@@ -35,7 +35,7 @@ class QuizAPIService {
             if (category) params.category = category;
             if (difficulty) params.difficulty = difficulty;
 
-            console.log(`Fetching ${amount} questions from Open Trivia DB...`);
+            console.info(`[API] Fetching ${amount} questions from Open Trivia DB...`);
 
             const response = await axios.get(this.apiEndpoint, { params });
 
