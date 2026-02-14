@@ -175,6 +175,7 @@ class GameEngine {
         });
     }
 
+    /** Handle answer submission */
     submitAnswer(room, ws, data) {
         const player = room.players.find(p => p.ws === ws);
         if (!player || player.answered) return;
