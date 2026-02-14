@@ -25,6 +25,7 @@
     font-family: 'Outfit', 'Segoe UI', sans-serif;
 }
 
+/* Global Layout */
 body {
     background: var(--background);
     color: var(--text);
