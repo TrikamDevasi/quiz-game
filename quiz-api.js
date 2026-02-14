@@ -1,5 +1,8 @@
 const axios = require('axios'); // HTTP client
 
+/**
+ * Service to interaction with Open Trivia DB
+ */
 class QuizAPIService {
     constructor() {
         this.baseURL = 'https://opentdb.com';
