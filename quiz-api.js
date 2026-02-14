@@ -16,7 +16,7 @@ class QuizAPIService {
      * @param {string} options.category - Category ID (default: any)
      * @param {string} options.difficulty - Difficulty level (easy, medium, hard)
      * @param {string} options.type - Question type (multiple choice, boolean)
-     * @returns {Promise<Array>} Array of formatted questions
+     * @returns {Promise<Array<Object>>} Array of formatted question objects
      */
     async fetchQuestions(options = {}) {
         try {
