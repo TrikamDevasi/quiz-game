@@ -8,8 +8,15 @@ class GameClient {
         this.audio = new AudioManager();
         this.currentRoomId = null;
         this.currentSettings = null;
+        this.isMuted = false;
 
         this.connectWebSocket();
+    }
+
+    toggleSound() {
+        this.isMuted = !this.isMuted;
+        this.ui.elements.soundToggleBtn.textContent = this.isMuted ? '🔇' : '🔊';
+        this.ui.elements.soundToggleBtn.classList.toggle('muted', this.isMuted);
     }
 
     connectWebSocket() {

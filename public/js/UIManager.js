@@ -94,6 +94,12 @@ export class UIManager {
                 this.elements.howToPlayModal.classList.add('hidden');
             });
         }
+
+        if (this.elements.soundToggleBtn) {
+            this.elements.soundToggleBtn.addEventListener('click', () => {
+                this.game.toggleSound();
+            });
+        }
     }
 
     getSoloSettings() {
