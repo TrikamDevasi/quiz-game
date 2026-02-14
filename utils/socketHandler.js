@@ -16,7 +16,7 @@ function handleConnection(ws) {
             const data = JSON.parse(message);
             handleMessage(ws, data);
         } catch (error) {
-            console.error('Error parsing message:', error);
+            console.error('Failed to parse incoming message:', error.message);
         }
     });
 
