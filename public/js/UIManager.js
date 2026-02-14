@@ -1,4 +1,7 @@
 export class UIManager {
+    /**
+     * @param {GameClient} gameClient - Reference to game client
+     */
     constructor(gameClient) {
         this.game = gameClient;
         this.initializeElements();
