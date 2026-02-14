@@ -28,6 +28,7 @@ class GameEngine {
         return Math.random().toString(36).substring(2, 15);
     }
 
+    // Fetch unique questions for user
     async getUniqueQuestions(userId, category, count) {
         try {
             // Get questions from external API
