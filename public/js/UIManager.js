@@ -37,7 +37,10 @@ export class UIManager {
             scoreBoard: document.getElementById('scoreBoard'),
             resultsContent: document.getElementById('resultsContent'),
             connectionStatus: document.getElementById('connectionStatus'),
-            statusText: document.getElementById('statusText')
+            statusText: document.getElementById('statusText'),
+            howToPlayBtn: document.getElementById('howToPlayBtn'),
+            howToPlayModal: document.getElementById('howToPlayModal'),
+            closeHowToPlayBtn: document.getElementById('closeHowToPlayBtn')
         };
     }
 
@@ -78,6 +81,18 @@ export class UIManager {
         });
 
         document.getElementById('backToMenuBtn').addEventListener('click', () => location.reload());
+
+        if (this.elements.howToPlayBtn) {
+            this.elements.howToPlayBtn.addEventListener('click', () => {
+                this.elements.howToPlayModal.classList.remove('hidden');
+            });
+        }
+
+        if (this.elements.closeHowToPlayBtn) {
+            this.elements.closeHowToPlayBtn.addEventListener('click', () => {
+                this.elements.howToPlayModal.classList.add('hidden');
+            });
+        }
     }
 
     getSoloSettings() {

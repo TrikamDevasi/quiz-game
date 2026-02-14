@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,11 @@
     <title>Quiz Multiplayer - KBC Style</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>🎯 Quiz Master</h1>
-        
+
         <!-- Connection Status -->
         <div id="connectionStatus" class="status-bar">
             <span class="status-dot"></span>
@@ -24,19 +26,20 @@
             <div class="menu-card">
                 <h2>Welcome to Quiz Master!</h2>
                 <input type="text" id="playerNameInput" placeholder="Enter your name" maxlength="20">
-                
+
                 <div class="button-group">
                     <button id="playSoloBtn" class="btn btn-primary">🎯 Play Solo</button>
                     <button id="createRoomBtn" class="btn btn-secondary">Create Room</button>
                 </div>
-                
+
                 <div class="button-group">
                     <button id="joinRoomBtn" class="btn btn-secondary">Join Room</button>
+                    <button id="howToPlayBtn" class="btn btn-secondary">❓ How to Play</button>
                 </div>
 
                 <div id="soloSettingsSection" class="hidden">
                     <h3>Solo Mode Settings:</h3>
-                    
+
                     <div class="setting-group">
                         <label>Category:</label>
                         <select id="soloCategorySelect" class="setting-select">
@@ -89,7 +92,7 @@
                     <span id="displayRoomId"></span>
                     <button id="copyRoomIdBtn" class="btn-icon" title="Copy Room ID">📋</button>
                 </div>
-                
+
                 <div id="playersWaiting">
                     <h3>Players:</h3>
                     <div id="playersList"></div>
@@ -98,7 +101,7 @@
                 <!-- Quiz Settings -->
                 <div id="quizSettings">
                     <h3>Quiz Settings</h3>
-                    
+
                     <div class="setting-group">
                         <label>Category:</label>
                         <select id="categorySelect" class="setting-select">
@@ -214,8 +217,23 @@
                 <button id="closePollBtn" class="btn btn-secondary">Close</button>
             </div>
         </div>
+
+        <!-- How to Play Modal -->
+        <div id="howToPlayModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>❓ How to Play</h3>
+                <ul style="text-align: left; margin-bottom: 20px; list-style-position: inside;">
+                    <li>🎯 <strong>Solo Mode:</strong> Challenge yourself against the clock!</li>
+                    <li>👥 <strong>Multiplayer:</strong> Create a room and invite friends.</li>
+                    <li>⚡ <strong>Scoring:</strong> Faster answers get more points!</li>
+                    <li>🆘 <strong>Lifelines:</strong> Use 50:50, Audience Poll, or Skip if stuck.</li>
+                </ul>
+                <button id="closeHowToPlayBtn" class="btn btn-primary">Got it!</button>
+            </div>
+        </div>
     </div>
 
     <script type="module" src="js/GameClient.js"></script>
 </body>
+
 </html>
