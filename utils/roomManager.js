@@ -72,6 +72,12 @@ class RoomManager {
         return this.rooms.get(roomId);
     }
 
+    /**
+     * Adds a player to a room
+     * @param {WebSocket} ws - Player socket
+     * @param {Object} data - Join data
+     * @returns {Object} Result object
+     */
     joinRoom(ws, data) {
         const room = this.rooms.get(data.roomId);
 
