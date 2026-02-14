@@ -144,7 +144,7 @@ class GameEngine {
 
             return true;
         } catch (error) {
-            console.error('Failed to start quiz:', error);
+            console.error('Failed to start quiz:', error); // Log critical failure
             return false;
         }
     }
