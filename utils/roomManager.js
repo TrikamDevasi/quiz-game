@@ -1,4 +1,4 @@
-const MAX_PLAYERS = 2; // Or configurable
+const MAX_PLAYERS = 2; // Maximum players per room
 
 class RoomManager {
     constructor() {
