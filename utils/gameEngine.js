@@ -73,8 +73,32 @@ class GameEngine {
                 });
             }
 
+            // Shuffle questions
             questions = questions.sort(() => 0.5 - Math.random());
-            return questions.slice(0, Math.min(count, questions.length));
+
+            // Limit to requested count
+            questions = questions.slice(0, Math.min(count, questions.length));
+
+            // Shuffle options for each question
+            return questions.map(q => {
+                // Create a copy to avoid modifying the original mocked data if it were cached
+                const questionCopy = { ...q };
+
+                // Get the correct answer string
+                const correctAnswer = questionCopy.options[questionCopy.correct];
+
+                // Shuffle options
+                const shuffledOptions = [...questionCopy.options].sort(() => 0.5 - Math.random());
+
+                // Find new index of correct answer
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+
+                questionCopy.options = shuffledOptions;
+                questionCopy.correct = newCorrectIndex;
+
+                return questionCopy;
+            });
+
         } catch (error) {
             console.error('Error reading local questions file:', error);
             // Super fallback
