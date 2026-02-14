@@ -1,0 +1,95 @@
+const MAX_PLAYERS = 2; // Or configurable
+
+class RoomManager {
+    constructor() {
+        this.rooms = new Map();
+    }
+
+    generateRoomId() {
+        return Math.random().toString(36).substring(2, 8).toUpperCase();
+    }
+
+    createRoom(host, data) {
+        const roomId = this.generateRoomId();
+        const room = {
+            id: roomId,
+            host: host,
+            players: [{ ws: host, name: data.playerName, score: 0, answered: false, correct: 0, wrong: 0 }],
+            settings: null,
+            currentQuestion: 0,
+            questions: [],
+            startTime: null,
+            lifelines: {},
+            botDifficulty: null,
+            isSolo: false
+        };
+
+        this.rooms.set(roomId, room);
+        host.roomId = roomId;
+
+        return room;
+    }
+
+    createSoloRoom(host, data) {
+        const roomId = this.generateRoomId();
+        const room = {
+            id: roomId,
+            host: host,
+            players: [
+                { ws: host, name: data.playerName, score: 0, answered: false, correct: 0, wrong: 0 }
+            ],
+            settings: data.settings || {
+                category: 'random',
+                questionCount: 10,
+                timeLimit: 30
+            },
+            currentQuestion: 0,
+            questions: [],
+            startTime: null,
+            lifelines: {},
+            isSolo: true
+        };
+
+        this.rooms.set(roomId, room);
+        host.roomId = roomId;
+
+        return room;
+    }
+
+    getRoom(roomId) {
+        return this.rooms.get(roomId);
+    }
+
+    joinRoom(ws, data) {
+        const room = this.rooms.get(data.roomId);
+
+        if (!room) {
+            return { error: 'Room not found' };
+        }
+
+        if (room.players.length >= MAX_PLAYERS) {
+            return { error: 'Room is full' };
+        }
+
+        room.players.push({ ws, name: data.playerName, score: 0, answered: false, correct: 0, wrong: 0 });
+        ws.roomId = data.roomId;
+
+        return { room };
+    }
+
+    removePlayer(ws) {
+        if (ws.roomId) {
+            const room = this.rooms.get(ws.roomId);
+            if (room) {
+                room.players = room.players.filter(p => p.ws !== ws);
+                if (room.players.length === 0) {
+                    this.rooms.delete(ws.roomId);
+                }
+                return room;
+            }
+        }
+        return null;
+    }
+}
+
+module.exports = new RoomManager();
