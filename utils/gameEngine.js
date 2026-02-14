@@ -1,5 +1,8 @@
 const quizAPI = require('../quiz-api');
 
+/**
+ * Manages game logic, scoring, and questions
+ */
 class GameEngine {
     constructor() {
         this.userQuestionHistory = new Map();
