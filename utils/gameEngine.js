@@ -261,6 +261,7 @@ class GameEngine {
         }
     }
 
+    /** End quiz and calculate results */
     endQuiz(room) {
         const results = room.players.map(p => ({
             name: p.name,
