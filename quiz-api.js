@@ -44,7 +44,7 @@ class QuizAPIService {
             }
 
             const questions = response.data.results.map(this.formatQuestion.bind(this));
-            console.log(`Successfully fetched ${questions.length} questions`);
+            console.info(`[API] Successfully fetched ${questions.length} questions`);
 
             return questions;
         } catch (error) {
