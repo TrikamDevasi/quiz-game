@@ -113,6 +113,7 @@ select option {
 }
 
 /* Buttons */
+/* Button Base Styles */
 .btn {
     width: 100%;
     padding: 1rem;
