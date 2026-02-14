@@ -124,6 +124,10 @@ export class UIManager {
         };
     }
 
+    /**
+     * Switch visible screen
+     * @param {string} screenName
+     */
     showScreen(screenName) {
         Object.values(this.screens).forEach(s => s.classList.remove('active'));
         if (this.screens[screenName]) this.screens[screenName].classList.add('active');
