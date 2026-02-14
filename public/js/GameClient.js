@@ -2,6 +2,9 @@ import { UIManager } from './UIManager.js';
 import { AudioManager } from './AudioManager.js';
 
 class GameClient {
+    /**
+     * Initialize game client
+     */
     constructor() {
         this.ws = null;
         this.ui = new UIManager(this);
