@@ -10,6 +10,7 @@ const wss = new WebSocket.Server({ server });
 
 app.use(express.static('public'));
 
+// Set port from environment or default to 3000
 const PORT = process.env.PORT || 3000;
 
 wss.on('connection', (ws) => {
