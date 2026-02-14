@@ -110,7 +110,7 @@ export class UIManager {
             playerName: this.elements.playerNameInput.value.trim(),
             settings: {
                 category: document.getElementById('soloCategorySelect').value,
-                questionCount: parseInt(document.getElementById('soloQuestionCountSelect').value),
+                questionCount: parseInt(document.getElementById('soloQuestionCountSelect').value, 10),
                 timeLimit: parseInt(document.getElementById('soloTimeLimitSelect').value)
             }
         };
