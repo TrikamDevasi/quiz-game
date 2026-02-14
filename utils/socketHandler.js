@@ -1,6 +1,10 @@
 const roomManager = require('./roomManager');
 const gameEngine = require('./gameEngine');
 
+/**
+ * Handles new WebSocket connections
+ * @param {WebSocket} ws - Client socket
+ */
 function handleConnection(ws) {
     console.log('New client connected');
 
