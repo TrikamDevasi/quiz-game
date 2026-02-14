@@ -9,6 +9,12 @@ class RoomManager {
         return Math.random().toString(36).substring(2, 8).toUpperCase();
     }
 
+    /**
+     * Creates a multiplayer room
+     * @param {WebSocket} host - The host's socket
+     * @param {Object} data - Room data
+     * @returns {Object} Created room
+     */
     createRoom(host, data) {
         const roomId = this.generateRoomId();
         const room = {
