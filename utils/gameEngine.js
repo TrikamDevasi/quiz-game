@@ -211,6 +211,7 @@ class GameEngine {
         }
     }
 
+    /** Handle lifeline usage */
     useLifeline(room, ws, data) {
         const player = room.players.find(p => p.ws === ws);
         if (!player) return;
