@@ -12,6 +12,7 @@ export class AudioManager {
     }
 
     play(soundName) {
+        if (window.gameClient && window.gameClient.isMuted) return;
         if (this.sounds[soundName]) {
             const sound = this.sounds[soundName].cloneNode();
             sound.volume = 0.5;

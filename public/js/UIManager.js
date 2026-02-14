@@ -40,7 +40,8 @@ export class UIManager {
             statusText: document.getElementById('statusText'),
             howToPlayBtn: document.getElementById('howToPlayBtn'),
             howToPlayModal: document.getElementById('howToPlayModal'),
-            closeHowToPlayBtn: document.getElementById('closeHowToPlayBtn')
+            closeHowToPlayBtn: document.getElementById('closeHowToPlayBtn'),
+            soundToggleBtn: document.getElementById('soundToggleBtn')
         };
     }
 

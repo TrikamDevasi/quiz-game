@@ -60,14 +60,17 @@ class GameEngine {
             const fs = require('fs').promises;
             const path = require('path');
             const data = await fs.readFile(path.join(__dirname, '../questions.json'), 'utf8');
-            let questions = JSON.parse(data);
 
-            // Filter by category if possible, or just shuffle
-            if (category !== 'random' && category) {
-                // Assuming JSON structure supports categories or just return random subset
-                // For now, let's just return random subset from file
-                // If JSON has categories, we could filter.
-                // Let's assume simple array for now based on file name.
+            let allQuestions = JSON.parse(data);
+            let questions = [];
+
+            if (category !== 'random' && category && allQuestions[category]) {
+                questions = allQuestions[category];
+            } else {
+                // Combine all categories
+                Object.values(allQuestions).forEach(categoryQuestions => {
+                    questions = questions.concat(categoryQuestions);
+                });
             }
 
             questions = questions.sort(() => 0.5 - Math.random());
