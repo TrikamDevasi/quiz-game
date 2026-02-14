@@ -5,7 +5,7 @@ const quizAPI = require('../quiz-api');
  */
 class GameEngine {
     constructor() {
-        this.userQuestionHistory = new Map();
+        this.userQuestionHistory = new Map(); // Tracks user questions
 
         // Clean up old user histories every hour (prevent memory leaks)
         setInterval(() => {
