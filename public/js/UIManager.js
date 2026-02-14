@@ -18,7 +18,7 @@ export class UIManager {
             results: document.getElementById('resultsScreen')
         };
 
-        // Inputs & Buttons
+        // DOM Elements - Controls
         this.elements = {
             playerNameInput: document.getElementById('playerNameInput'),
             createRoomBtn: document.getElementById('createRoomBtn'),
