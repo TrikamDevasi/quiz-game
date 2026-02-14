@@ -9,7 +9,7 @@ export class UIManager {
     }
 
     initializeElements() {
-        // Screens
+        // DOM Elements - Screens
         this.screens = {
             menu: document.getElementById('menuScreen'),
             waiting: document.getElementById('waitingScreen'),
