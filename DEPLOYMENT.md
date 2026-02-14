@@ -49,3 +49,7 @@ Access the game at: `http://localhost:3000`
 ## ⚠️ Notes
 - The application uses `questions.json` as a fallback if the external API fails.
 - Ensure port 3000 is free before running.
+
+## Prerequisites
+- Node.js v14+
+- NPM v6+
