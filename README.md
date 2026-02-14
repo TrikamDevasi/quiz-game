@@ -50,3 +50,8 @@ Visit: http://localhost:3000
 1. Clone repo
 2. `npm install`
 3. `npm start`
+## Features
+- Multiplayer
+- Solo Mode
+- Realtime Chat
+- Live Scoreboard
