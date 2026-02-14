@@ -23,6 +23,7 @@ class GameEngine {
         }, 3600000); // Every hour
     }
 
+    /** Generate ID */
     generateUserId() {
         return Math.random().toString(36).substring(2, 15);
     }
