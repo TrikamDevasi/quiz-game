@@ -135,7 +135,7 @@ export class UIManager {
 
     updateConnectionStatus(status) {
         this.elements.connectionStatus.className = `status-bar ${status}`;
-        this.elements.statusText.textContent = status === 'connected' ? 'Connected' : 'Disconnected';
+        this.elements.statusText.textContent = (status === 'connected') ? 'Connected' : 'Disconnected';
     }
 
     displayRoomId(id) {
