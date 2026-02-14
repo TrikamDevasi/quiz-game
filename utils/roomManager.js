@@ -36,6 +36,12 @@ class RoomManager {
         return room;
     }
 
+    /**
+     * Creates a solo room
+     * @param {WebSocket} host - The host's socket
+     * @param {Object} data - Game data
+     * @returns {Object} Created room
+     */
     createSoloRoom(host, data) {
         const roomId = this.generateRoomId();
         const room = {
