@@ -48,7 +48,7 @@ class QuizAPIService {
 
             return questions;
         } catch (error) {
-            console.error('Error fetching questions from API:', error.message);
+            console.error('[API Error] Fetch failed:', error.message);
             throw error;
         }
     }
