@@ -11,7 +11,7 @@ class GameClient {
         this.audio = new AudioManager();
         this.currentRoomId = null;
         this.currentSettings = null;
-        this.isMuted = false;
+        this.isMuted = false; // Sound state
 
         this.connectWebSocket();
     }
