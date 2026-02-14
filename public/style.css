@@ -30,14 +30,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: 
+    background-image:
         radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 40%);
     overflow-x: hidden;
 }
 
 /* Glassmorphism Cards */
-.menu-card, .waiting-card, .loading-card, .quiz-header, .question-card, .results-card, .modal-content {
+.menu-card,
+.waiting-card,
+.loading-card,
+.quiz-header,
+.question-card,
+.results-card,
+.modal-content {
     background: var(--surface);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -62,6 +68,7 @@ h1 {
     font-size: 3rem;
     font-weight: 800;
     background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
@@ -76,7 +83,8 @@ h2 {
 }
 
 /* Inputs & Forms */
-input, select {
+input,
+select {
     width: 100%;
     background: var(--surface-light);
     border: 1px solid var(--glass-border);
@@ -88,7 +96,8 @@ input, select {
     transition: all 0.3s ease;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
@@ -279,26 +288,53 @@ select option {
 }
 
 /* Utilities */
-.hidden { display: none !important; }
-.screen { display: none; opacity: 0; transition: opacity 0.5s ease; }
-.screen.active { display: block; opacity: 1; animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Loading */
 .loading-spinner {
     width: 50px;
     height: 50px;
-    border: 3px solid rgba(255,255,255,0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     border-top-color: var(--primary);
     animation: spin 1s ease-in-out infinite;
@@ -306,7 +342,9 @@ select option {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Result Items */
@@ -354,5 +392,10 @@ select option {
     background: var(--warning);
 }
 
-.status-bar.connected .status-dot { background: var(--success); }
-.status-bar.disconnected .status-dot { background: var(--error); }
+.status-bar.connected .status-dot {
+    background: var(--success);
+}
+
+.status-bar.disconnected .status-dot {
+    background: var(--error);
+}

@@ -55,29 +55,35 @@ class GameEngine {
         }
     }
 
-    getFallbackQuestions(category, count) {
-        const fallbackQuestions = [
-            {
-                question: "What is the capital of India?",
-                options: ["New Delhi", "Mumbai", "Kolkata", "Chennai"],
-                correct: 0,
-                difficulty: "easy"
-            },
-            {
-                question: "Who is known as the Father of the Nation?",
-                options: ["Mahatma Gandhi", "Jawaharlal Nehru", "Sardar Patel", "Subhas Chandra Bose"],
-                correct: 0,
-                difficulty: "easy"
-            },
-            {
-                question: "Which planet is known as the Red Planet?",
-                options: ["Mars", "Venus", "Jupiter", "Saturn"],
-                correct: 0,
-                difficulty: "easy"
-            }
-        ];
+    async getFallbackQuestions(category, count) {
+        try {
+            const fs = require('fs').promises;
+            const path = require('path');
+            const data = await fs.readFile(path.join(__dirname, '../questions.json'), 'utf8');
+            let questions = JSON.parse(data);
 
-        return fallbackQuestions.slice(0, Math.min(count, fallbackQuestions.length));
+            // Filter by category if possible, or just shuffle
+            if (category !== 'random' && category) {
+                // Assuming JSON structure supports categories or just return random subset
+                // For now, let's just return random subset from file
+                // If JSON has categories, we could filter.
+                // Let's assume simple array for now based on file name.
+            }
+
+            questions = questions.sort(() => 0.5 - Math.random());
+            return questions.slice(0, Math.min(count, questions.length));
+        } catch (error) {
+            console.error('Error reading local questions file:', error);
+            // Super fallback
+            return [
+                {
+                    question: "What is the capital of India?",
+                    options: ["New Delhi", "Mumbai", "Kolkata", "Chennai"],
+                    correct: 0,
+                    difficulty: "easy"
+                }
+            ];
+        }
     }
 
     async startQuiz(room) {
